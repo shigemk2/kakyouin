@@ -5,20 +5,11 @@ object kakyouin {
     var source = Source.fromFile("test.rero")
     var list = List.empty[Char]
     var rero = ""
-    var j = 0
     source.foreach( { i =>
-      if (i == " ") {
-        list = i :: list
-        rero = ""
-      } else {
-        rero += i
-      }
-      // println(i)
-      // println(j)
-      j += 1
+      rero += i
     })
-    println(j)
-    println(list)
+    println(rero)
+    println(rero.split(" "))
     source.close
   }
 }
