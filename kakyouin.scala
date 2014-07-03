@@ -1,4 +1,5 @@
 import scala.io.Source
+import scala.util.control.Breaks
 
 object kakyouin {
   def main(args: Array[String]) {
@@ -8,6 +9,7 @@ object kakyouin {
     var curmem = 0
     var i = 0
     var nest = 0
+    val b = new Breaks
 
     source.foreach( { i =>
       rero += i
@@ -26,36 +28,32 @@ object kakyouin {
         case "レロレロレロレロ" =>
           curmem += 1
         case "レロレロレロレロレロ" =>
-          if (mem(curmem) != 0) {
-            i = array.length + 1
-          }
-          nest = 0
-          while (i < array.length) {
-            if (array(i) == "レロレロレロレロレロ") {
-              nest += 1
-            } else if (array(i) == "レロレロレロレロレロレロ") {
-              nest -= 1
-              if (nest == 0) {
-                i = array.length + 1
+          b.breakable {
+            if (mem(curmem) != 0) b.break
+            nest = 0
+            while (i < array.length) {
+              if (array(i) == "レロレロレロレロレロ") {
+                nest += 1
+              } else if (array(i) == "レロレロレロレロレロレロ") {
+                nest -= 1
+                if (nest == 0) b.break
               }
+              i += 1
             }
-            i += 1
           }
         case "レロレロレロレロレロレロ" =>
-          if (mem(curmem) == 0)  {
-            i = array.length + 1
-          }
-          nest = 0
-          while (i >= 0) {
-            if (array(i) == "レロレロレロレロレロレロ") {
-              nest += 1
-            } else if (array(i) == "レロレロレロレロレロ") {
-              nest -= 1
-              if (nest == 0)  {
-                i = array.length + 1
+          b.breakable {
+            if (mem(curmem) == 0) b.break
+            nest = 0
+            while (i >= 0) {
+              if (array(i) == "レロレロレロレロレロレロ") {
+                nest += 1
+              } else if (array(i) == "レロレロレロレロレロ") {
+                nest -= 1
+                if (nest == 0) b.break
               }
+              i -= 1
             }
-            i -= 1
           }
         case "レ" =>
           printf("%s", mem(curmem))
