@@ -12,52 +12,52 @@ object kakyouin {
     val b = new Breaks
 
     source.foreach( { i =>
-      rero += i
+      rero += i + " "
     })
     var array = rero.split("[\\s]+")
     while (i < array.length) {
       printf("i=%d bf[i]=%s curmem=%d mem[curmem]=%d nest=%d\n",
         i, array(i), curmem, mem(curmem), nest);
       array(i) match {
-        case "レロ" =>
+        case "-" =>
           mem(curmem) -= 1
-        case "レロレロ" =>
+        case "+" =>
           mem(curmem) += 1
-        case "レロレロレロ" =>
+        case "<" =>
           curmem -= 1
-        case "レロレロレロレロ" =>
+        case ">" =>
           curmem += 1
-        case "レロレロレロレロレロ" =>
+        case "[" =>
           b.breakable {
             if (mem(curmem) != 0) b.break
             nest = 0
             while (i < array.length) {
-              if (array(i) == "レロレロレロレロレロ") {
+              if (array(i) == "[") {
                 nest += 1
-              } else if (array(i) == "レロレロレロレロレロレロ") {
+              } else if (array(i) == "]") {
                 nest -= 1
                 if (nest == 0) b.break
               }
               i += 1
             }
           }
-        case "レロレロレロレロレロレロ" =>
+        case "]" =>
           b.breakable {
             if (mem(curmem) == 0) b.break
             nest = 0
             while (i >= 0) {
-              if (array(i) == "レロレロレロレロレロレロ") {
+              if (array(i) == "]") {
                 nest += 1
-              } else if (array(i) == "レロレロレロレロレロ") {
+              } else if (array(i) == "[") {
                 nest -= 1
                 if (nest == 0) b.break
               }
               i -= 1
             }
           }
-        case "レ" =>
-          printf("%s", mem(curmem))
-        case "ロ" =>
+        case "." =>
+          printf("%s", mem(curmem).toString)
+        case "," =>
           mem(curmem) += array(i).asInstanceOf[Int]
       }
 
