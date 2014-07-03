@@ -13,7 +13,48 @@ object kakyouin {
       rero += i
     })
     var array = rero.split("[\\s]+")
-    array.foreach(println)
+    while (i < array.length) {
+      println(array(i))
+      i += 1
+    }
+      // switch(j) {
+      //   case "レロ" =>
+      //     mem[curmem] -= 1
+      //   case "レロレロ" =>
+      //     mem[curmem] += 1
+      //   case "レロレロレロ" =>
+      //     curmem -= 1
+      //   case "レロレロレロレロ" =>
+      //     curmem += 1
+      //   case "レロレロレロレロレロ" =>
+      //     if (mem[curmem] != 0) break
+      //     nest = 0
+      //     while (i < len) {
+      //       if (j == "レロレロレロレロレロ") {
+      //         nest += 1
+      //       } else if (j == "レロレロレロレロレロレロ") {
+      //         nest -= 1
+      //         if (nest == 0) break
+      //       }
+      //       i += 1
+      //     }
+      //   case "レロレロレロレロレロレロ" =>
+      //     if (mem[curmem] == 0) break
+      //     nest = 0
+      //     while (i >= 0) {
+      //       if (j == "レロレロレロレロレロレロ") {
+      //         nest += 1
+      //       } else if (j == "レロレロレロレロレロ") {
+      //         nest -= 1
+      //         if (nest == 0) break
+      //       }
+      //       i -= 1
+      //     }
+      //   case "レ" =>
+      //     printf("%s", mem[curmem])
+      //   case "ロ" =>
+      //     mem[curmem] += j.asInstanceOf[Int]
+      // }
     source.close
   }
 }
