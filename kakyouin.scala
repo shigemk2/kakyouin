@@ -14,47 +14,55 @@ object kakyouin {
     })
     var array = rero.split("[\\s]+")
     while (i < array.length) {
-      println(array(i))
+      array(i) match {
+        case "レロ" =>
+          mem(curmem) -= 1
+        case "レロレロ" =>
+          mem(curmem) += 1
+        case "レロレロレロ" =>
+          curmem -= 1
+        case "レロレロレロレロ" =>
+          curmem += 1
+        case "レロレロレロレロレロ" =>
+          if (mem(curmem) != 0) {
+            i = array.length + 1
+          }
+          nest = 0
+          while (i < array.length) {
+            if (array(i) == "レロレロレロレロレロ") {
+              nest += 1
+            } else if (array(i) == "レロレロレロレロレロレロ") {
+              nest -= 1
+              if (nest == 0) {
+                i = array.length + 1
+              }
+            }
+            i += 1
+          }
+        case "レロレロレロレロレロレロ" =>
+          if (mem(curmem) == 0)  {
+            i = array.length + 1
+          }
+          nest = 0
+          while (i >= 0) {
+            if (array(i) == "レロレロレロレロレロレロ") {
+              nest += 1
+            } else if (array(i) == "レロレロレロレロレロ") {
+              nest -= 1
+              if (nest == 0)  {
+                i = array.length + 1
+              }
+            }
+            i -= 1
+          }
+        case "レ" =>
+          printf("%s", mem(curmem))
+        case "ロ" =>
+          mem(curmem) += array(i).asInstanceOf[Int]
+      }
+
       i += 1
     }
-      // switch(j) {
-      //   case "レロ" =>
-      //     mem[curmem] -= 1
-      //   case "レロレロ" =>
-      //     mem[curmem] += 1
-      //   case "レロレロレロ" =>
-      //     curmem -= 1
-      //   case "レロレロレロレロ" =>
-      //     curmem += 1
-      //   case "レロレロレロレロレロ" =>
-      //     if (mem[curmem] != 0) break
-      //     nest = 0
-      //     while (i < len) {
-      //       if (j == "レロレロレロレロレロ") {
-      //         nest += 1
-      //       } else if (j == "レロレロレロレロレロレロ") {
-      //         nest -= 1
-      //         if (nest == 0) break
-      //       }
-      //       i += 1
-      //     }
-      //   case "レロレロレロレロレロレロ" =>
-      //     if (mem[curmem] == 0) break
-      //     nest = 0
-      //     while (i >= 0) {
-      //       if (j == "レロレロレロレロレロレロ") {
-      //         nest += 1
-      //       } else if (j == "レロレロレロレロレロ") {
-      //         nest -= 1
-      //         if (nest == 0) break
-      //       }
-      //       i -= 1
-      //     }
-      //   case "レ" =>
-      //     printf("%s", mem[curmem])
-      //   case "ロ" =>
-      //     mem[curmem] += j.asInstanceOf[Int]
-      // }
     source.close
   }
 }
