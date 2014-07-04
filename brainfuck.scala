@@ -16,8 +16,8 @@ object brainfuck {
     })
     var array = rero.split("[\\s]+")
     while (i < array.length) {
-      printf("i=%d bf[i]=%s curmem=%d mem[curmem]=%d nest=%d\n",
-        i, array(i), curmem, mem(curmem), nest);
+      // printf("i=%d bf[i]=%s curmem=%d mem[curmem]=%d nest=%d\n",
+      //   i, array(i), curmem, mem(curmem), nest);
       array(i) match {
         case "-" =>
           mem(curmem) -= 1
