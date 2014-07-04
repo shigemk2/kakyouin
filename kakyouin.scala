@@ -56,7 +56,7 @@ object kakyouin {
             }
           }
         case "." =>
-          printf("%s", mem(curmem).toString)
+          println(mem(curmem).asInstanceOf[Char])
         case "," =>
           mem(curmem) += array(i).asInstanceOf[Int]
       }
