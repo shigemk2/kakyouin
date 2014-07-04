@@ -3,7 +3,7 @@ import scala.util.control.Breaks
 
 object brainfuck {
   def main(args: Array[String]) {
-    var source = Source.fromFile("test.rero")
+    var source = Source.fromFile(args(0))
     var rero = ""
     var mem = new Array[Int](30000)
     var curmem = 0
