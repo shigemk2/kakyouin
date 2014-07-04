@@ -56,7 +56,7 @@ object brainfuck {
             }
           }
         case "." =>
-          println(mem(curmem).asInstanceOf[Char])
+          print(mem(curmem).asInstanceOf[Char])
         case "," =>
           mem(curmem) += array(i).asInstanceOf[Int]
       }
