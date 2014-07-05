@@ -3,7 +3,7 @@ import scala.util.control.Breaks
 
 object kakyouin {
   def main(args: Array[String]) {
-    var source = Source.fromFile("test.rero")
+    var source = Source.fromFile(args(0))
     var rero = ""
     var mem = new Array[Int](30000)
     var curmem = 0
@@ -16,8 +16,8 @@ object kakyouin {
     })
     var array = rero.split("[\\s]+")
     while (i < array.length) {
-      printf("i=%d bf[i]=%s curmem=%d mem[curmem]=%d nest=%d\n",
-        i, array(i), curmem, mem(curmem), nest);
+      // printf("i=%d bf[i]=%s curmem=%d mem[curmem]=%d nest=%d\n",
+      //   i, array(i), curmem, mem(curmem), nest);
       array(i) match {
         case "-" =>
           mem(curmem) -= 1
@@ -56,9 +56,10 @@ object kakyouin {
             }
           }
         case "." =>
-          println(mem(curmem).asInstanceOf[Char])
+          print(mem(curmem).asInstanceOf[Char])
         case "," =>
-          mem(curmem) += array(i).asInstanceOf[Int]
+          mem(curmem) = Console.in.read
+        case _ =>
       }
 
       i += 1
