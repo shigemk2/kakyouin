@@ -58,7 +58,8 @@ object brainfuck {
         case "." =>
           print(mem(curmem).asInstanceOf[Char])
         case "," =>
-          mem(curmem) += array(i).asInstanceOf[Int]
+          mem(curmem) = Console.in.read
+        case _ =>
       }
 
       i += 1
