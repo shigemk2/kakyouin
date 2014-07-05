@@ -1,0 +1,4 @@
+#!/bin/sh
+cp brainfuck.scala kakyouin.scala
+sed -i -d "s/brainfuck/kakyouin/g" kakyouin.scala
+rm kakyouin.scala-*
