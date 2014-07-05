@@ -12,7 +12,7 @@ object kakyouin {
     val b = new Breaks
 
     source.foreach( { i =>
-      rero += i + " "
+      rero += i
     })
     var array = rero.split("[\\s]+")
     while (i < array.length) {
