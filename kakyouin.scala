@@ -19,45 +19,57 @@ object kakyouin {
       // printf("i=%d bf[i]=%s curmem=%d mem[curmem]=%d nest=%d\n",
       //   i, array(i), curmem, mem(curmem), nest);
       array(i) match {
-        case "-" =>
+        // case "-" =>
+        case "レロ" =>
           mem(curmem) -= 1
-        case "+" =>
+        // case "+" =>
+        case "レロレロ" =>
           mem(curmem) += 1
-        case "<" =>
+        // case "<" =>
+        case "レロレロレロ" =>
           curmem -= 1
-        case ">" =>
+        // case ">" =>
+        case "レロレロレロレロ" =>
           curmem += 1
-        case "[" =>
+        // case "[" =>
+        case "レロレロレロレロレロ" =>
           b.breakable {
             if (mem(curmem) != 0) b.break
             nest = 0
             while (i < array.length) {
-              if (array(i) == "[") {
+              // if (array(i) == "[") {
+              if (array(i) == "レロレロレロレロレロ") {
                 nest += 1
-              } else if (array(i) == "]") {
+              // } else if (array(i) == "]") {
+              } else if (array(i) == "レロレロレロレロレロレロ") {
                 nest -= 1
                 if (nest == 0) b.break
               }
               i += 1
             }
           }
-        case "]" =>
+        // case "]" =>
+        case "レロレロレロレロレロレロ" =>
           b.breakable {
             if (mem(curmem) == 0) b.break
             nest = 0
             while (i >= 0) {
-              if (array(i) == "]") {
+              // if (array(i) == "]") {
+              if (array(i) == "レロレロレロレロレロレロ") {
                 nest += 1
-              } else if (array(i) == "[") {
+              // } else if (array(i) == "[") {
+              } else if (array(i) == "レロレロレロレロレロ") {
                 nest -= 1
                 if (nest == 0) b.break
               }
               i -= 1
             }
           }
-        case "." =>
+        // case "." =>
+        case "レ" =>
           print(mem(curmem).asInstanceOf[Char])
-        case "," =>
+        // case "," =>
+        case "ロ" =>
           mem(curmem) = Console.in.read
         case _ =>
       }
