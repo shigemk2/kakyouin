@@ -15,34 +15,31 @@ object bftranslate {
     out.print("var r = 0\n")
 
     source.foreach( { i =>
-       bf += i + " "
+      bf += i + " "
     })
 
     val array = bf.split("[\\s]+")
-    array.foreach( { i =>
-       println(i)
-    })
 
     while (i < array.length) {
       array(i) match {
         case "+" =>
-            out.print("mem(r) += 1 // +\n")
+          out.print("mem(r) += 1 // +\n")
         case "-" =>
-            out.print("mem(r) -= 1 // -\n")
+          out.print("mem(r) -= 1 // -\n")
         case ">" =>
-            out.print("r += 1 // > \n")
+          out.print("r += 1 // > \n")
         case "<" =>
-            out.print("r -= 1 // < \n")
+          out.print("r -= 1 // < \n")
         case "[" =>
-            out.print("while (mem(r) > 0) { // [\n")
+          out.print("while (mem(r) > 0) { // [\n")
         case "]" =>
-            out.print("} // ]\n")
+          out.print("} // ]\n")
         case "." =>
-            out.print("print(mem(r).asInstanceOf[Char]) // .\n")
+          out.print("print(mem(r).asInstanceOf[Char]) // .\n")
         case "," =>
-            out.print("mem(r) = Console.in.read // ,\n")
-        }
-        i += 1
+          out.print("mem(r) = Console.in.read // ,\n")
+      }
+      i += 1
     }
 
     out.print("}\n");
