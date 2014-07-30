@@ -8,6 +8,7 @@ object bftranslate {
     var out = new PrintWriter(args(1))
     var i = 0
     var bf = ""
+    var count = 1
 
     out.print("object main {\n")
     out.print("def main(args: Array[String]) {\n")
@@ -23,13 +24,41 @@ object bftranslate {
     while (i < array.length) {
       array(i) match {
         case "+" =>
-          out.print("mem(r) += 1 // +\n")
+          if (i > 0 && array(i-1) == array(i)) {
+            count += 1
+          } else {
+            count = 1
+          }
+          if (array(i) != array(i+1)) {
+            out.print("mem(r) += "+count+" // +\n")
+          }
         case "-" =>
-          out.print("mem(r) -= 1 // -\n")
+          if (i > 0 && array(i-1) == array(i)) {
+            count += 1
+          } else {
+            count = 1
+          }
+          if (array(i) != array(i+1)) {
+            out.print("mem(r) -= "+count+" // -\n")
+          }
         case ">" =>
-          out.print("r += 1 // > \n")
+          if (i > 0 && array(i-1) == array(i)) {
+            count += 1
+          } else {
+            count = 1
+          }
+          if (array(i) != array(i+1)) {
+            out.print("r += "+count+" // >\n")
+          }
         case "<" =>
-          out.print("r -= 1 // < \n")
+          if (i > 0 && array(i-1) == array(i)) {
+            count += 1
+          } else {
+            count = 1
+          }
+          if (array(i) != array(i+1)) {
+            out.print("r -= "+count+" // <\n")
+          }
         case "[" =>
           out.print("while (mem(r) > 0) { // [\n")
         case "]" =>
@@ -38,6 +67,7 @@ object bftranslate {
           out.print("print(mem(r).asInstanceOf[Char]) // .\n")
         case "," =>
           out.print("mem(r) = Console.in.read // ,\n")
+        case _ =>
       }
       i += 1
     }
