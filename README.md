@@ -71,3 +71,8 @@ $ scala translateb2r brainfuck/shigemk2.b kakyouin/shigemk2.rero
 brainfuck/shigemk2.b
 kakyouin/shigemk2.rero
 ```
+
+### 注意
+
+花京院を使う際は文字コードに気をつけましょう。
+特にWindowsで動かすときは結構しんどいです。
